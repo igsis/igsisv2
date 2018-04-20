@@ -379,6 +379,25 @@ CREATE PROCEDURE pr_insert_cargos()
   END //
 DELIMITER ; 
 
+DROP PROCEDURE IF EXISTS pr_insert_coordenadorias;
+DELIMITER //
+CREATE PROCEDURE pr_insert_coordenadorias()
+  BEGIN  
+   INSERT INTO 
+     igsisv2.coordenadorias(
+       idCoordenadoria,
+       descricao       
+   )    
+   SELECT 
+     idCoordenadoria,
+     coordenadoria     
+   FROM 
+     igsis.sis_formacao_coordenadoria;    
+  END //
+DELIMITER ; 
+
+
+
 /*Modulo ADM*/
 CALL pr_insert_instituicoes();
 CALL pr_insert_usuarios();
@@ -392,9 +411,9 @@ CALL pr_cria_temp_usuarioLocais();
 CALL pr_insert_usuarioLocais_complemento;
 CALL pr_delete_tmp_usuarios;
 
-
 /*Modulo Formacao*/
 CALL pr_insert_cargos();
+CALL pr_insert_coordenadorias();
 
 
 
