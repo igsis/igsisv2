@@ -358,6 +358,28 @@ CREATE PROCEDURE pr_delete_tmp_usuarios()
   END //
 DELIMITER ; 
 
+DROP PROCEDURE IF EXISTS pr_insert_cargos;
+DELIMITER //
+CREATE PROCEDURE pr_insert_cargos()
+  BEGIN  
+   INSERT INTO 
+     igsisv2.cargos(
+       idCargo,
+       descricao,
+       coordenador,
+       justificativa
+   )    
+   SELECT 
+     id_cargo,
+     cargo,
+     coordenador,
+     justificativa
+   FROM 
+     igsis.sis_formacao_cargo;    
+  END //
+DELIMITER ; 
+
+/*Modulo ADM*/
 CALL pr_insert_instituicoes();
 CALL pr_insert_usuarios();
 CALL pr_altera_tamanho_campo('usuarios', 'usuario', 7);
@@ -369,6 +391,10 @@ CALL pr_insert_usuarioLocais;
 CALL pr_cria_temp_usuarioLocais();
 CALL pr_insert_usuarioLocais_complemento;
 CALL pr_delete_tmp_usuarios;
+
+
+/*Modulo Formacao*/
+CALL pr_insert_cargos();
 
 
 

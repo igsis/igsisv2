@@ -56,6 +56,12 @@ INSERT INTO logCopia(old_igsis, new_igsis, nomeTabela)
         usuarioLocais AS ul
       ON ul.idUsuario = igUser.idUsuario),     
 	'UsuarioLocais');    
+    
+INSERT INTO logCopia(old_igsis, new_igsis, nomeTabela)
+  VALUES( 
+    (SELECT COUNT(id_cargo) FROM igsis.sis_formacao_cargo),
+    (SELECT COUNT(idCargo) FROM cargos),
+	'Cargos');    
 
 SELECT * FROM logCopia;
 
