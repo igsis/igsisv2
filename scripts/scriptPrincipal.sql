@@ -165,12 +165,12 @@ CREATE PROCEDURE pr_insert_usuarios()
   END //
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS pr_insert_usuariosContratos;
+DROP PROCEDURE IF EXISTS pr_insert_usuarioContratos;
 DELIMITER //
-CREATE PROCEDURE pr_insert_usuariosContratos()
+CREATE PROCEDURE pr_insert_usuarioContratos()
   BEGIN    
     INSERT INTO 
-      usuariosContratos(
+      usuarioContratos(
         idUsuario    
     )
 
@@ -180,7 +180,7 @@ CREATE PROCEDURE pr_insert_usuariosContratos()
       usuarios;
   
     SET SQL_SAFE_UPDATES=0; /*Desabilita o parametro em edit\preferences\sqlEditor\safeUpdates*/
-    UPDATE usuariosContratos AS uc
+    UPDATE usuarioContratos AS uc
       INNER JOIN  igsis.ig_usuario AS userIg 
       ON  userIg.idUsuario = uc.idUsuario
     
@@ -255,12 +255,12 @@ CREATE PROCEDURE pr_insert_locais()
   END //
 DELIMITER ; 
 
-DROP PROCEDURE IF EXISTS pr_insert_usuariosLocais;
+DROP PROCEDURE IF EXISTS pr_insert_usuarioLocais;
 DELIMITER //
-CREATE PROCEDURE pr_insert_usuariosLocais()
+CREATE PROCEDURE pr_insert_usuarioLocais()
   BEGIN  
    INSERT INTO 
-     usuariosLocais(
+     usuarioLocais(
      idUsuario,    
      idLocal
    )    
@@ -314,9 +314,9 @@ CREATE FUNCTION fn_cria_temp_table_usuarioLocal(idUser int) RETURNS int
 END //
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS pr_cria_temp_usuariosLocais;
+DROP PROCEDURE IF EXISTS pr_cria_temp_usuarioLocais;
 DELIMITER //
-CREATE PROCEDURE pr_cria_temp_usuariosLocais()
+CREATE PROCEDURE pr_cria_temp_usuarioLocais()
   BEGIN  
     SELECT 
       fn_cria_temp_table_usuarioLocal(idUsuario)
@@ -326,12 +326,12 @@ CREATE PROCEDURE pr_cria_temp_usuariosLocais()
   END //
 DELIMITER ; 
 
-DROP PROCEDURE IF EXISTS pr_insert_usuariosLocais_complemento
+DROP PROCEDURE IF EXISTS pr_insert_usuarioLocais_complemento
 DELIMITER //
-CREATE PROCEDURE pr_insert_usuariosLocais_complemento()
+CREATE PROCEDURE pr_insert_usuarioLocais_complemento()
   BEGIN  
     INSERT INTO 
-      usuariosLocais(
+      usuarioLocais(
       idUsuario,    
       idLocal
     )       
@@ -361,13 +361,13 @@ DELIMITER ;
 CALL pr_insert_instituicoes();
 CALL pr_insert_usuarios();
 CALL pr_altera_tamanho_campo('usuarios', 'usuario', 7);
-CALL pr_insert_usuariosContratos;
+CALL pr_insert_usuarioContratos;
 CALL pr_insert_enderecos;
 CALL pr_insert_locais;
 CALL pr_altera_locais_endereco;
-CALL pr_insert_usuariosLocais;
-CALL pr_cria_temp_usuariosLocais();
-CALL pr_insert_usuariosLocais_complemento;
+CALL pr_insert_usuarioLocais;
+CALL pr_cria_temp_usuarioLocais();
+CALL pr_insert_usuarioLocais_complemento;
 CALL pr_delete_tmp_usuarios;
 
 

@@ -25,8 +25,8 @@ INSERT INTO logCopia(old_igsis, new_igsis, nomeTabela)
 INSERT INTO logCopia(old_igsis, new_igsis, nomeTabela)
   VALUES( 
     (SELECT COUNT(idUsuario) FROM igsis.ig_usuario WHERE contratos IS NOT NULL),
-    (SELECT COUNT(idUsuario) FROM usuariosContratos WHERE nivelAcesso IS NOT NULL),
-	'UsuariosContratos');
+    (SELECT COUNT(idUsuario) FROM usuarioContratos WHERE nivelAcesso IS NOT NULL),
+	'UsuarioContratos');
 
 INSERT INTO logCopia(old_igsis, new_igsis, nomeTabela)
   VALUES(0,         
@@ -46,16 +46,16 @@ INSERT INTO logCopia(old_igsis, new_igsis, nomeTabela)
       FROM 
         igsis.ig_usuario as igUser
       INNER JOIN 
-        usuariosLocais AS ul
+        usuarioLocais AS ul
       ON ul.idUsuario = igUser.idUsuario),
      (SELECT 
         COUNT(ul.idUsuario) 
       FROM 
         igsis.ig_usuario as igUser
       INNER JOIN 
-        usuariosLocais AS ul
+        usuarioLocais AS ul
       ON ul.idUsuario = igUser.idUsuario),     
-	'UsuariosLocais');    
+	'UsuarioLocais');    
 
 SELECT * FROM logCopia;
 
