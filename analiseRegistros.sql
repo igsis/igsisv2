@@ -68,6 +68,12 @@ INSERT INTO logCopia(old_igsis, new_igsis, nomeTabela)
     (SELECT COUNT(idCoordenadoria) FROM igsis.sis_formacao_coordenadoria),
     (SELECT COUNT(idCoordenadoria) FROM coordenadorias),
 	'Coordenadorias');        
+    
+INSERT INTO logCopia(old_igsis, new_igsis, nomeTabela)
+  VALUES( 
+    (SELECT COUNT(id_linguagem) FROM igsis.sis_formacao_linguagem),
+    (SELECT COUNT(idLinguagem) FROM linguagens),
+	'Linguagens');        
 
 SELECT * FROM logCopia;
 

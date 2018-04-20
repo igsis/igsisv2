@@ -396,6 +396,23 @@ CREATE PROCEDURE pr_insert_coordenadorias()
   END //
 DELIMITER ; 
 
+DROP PROCEDURE IF EXISTS pr_insert_linguagens;
+DELIMITER //
+CREATE PROCEDURE pr_insert_linguagens()
+  BEGIN  
+   INSERT INTO 
+     igsisv2.linguagens(
+       idLinguagem,
+       descricao       
+   )    
+   SELECT 
+     id_linguagem,
+     linguagem     
+   FROM 
+     igsis.sis_formacao_linguagem;    
+  END //
+DELIMITER ; 
+
 
 
 /*Modulo ADM*/
@@ -414,6 +431,8 @@ CALL pr_delete_tmp_usuarios;
 /*Modulo Formacao*/
 CALL pr_insert_cargos();
 CALL pr_insert_coordenadorias();
+CALL pr_insert_linguagens();
+
 
 
 
