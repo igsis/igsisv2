@@ -74,6 +74,18 @@ INSERT INTO logCopia(old_igsis, new_igsis, nomeTabela)
     (SELECT COUNT(id_linguagem) FROM igsis.sis_formacao_linguagem),
     (SELECT COUNT(idLinguagem) FROM linguagens),
 	'Linguagens');        
+    
+INSERT INTO logCopia(old_igsis, new_igsis, nomeTabela)
+  VALUES( 
+    (SELECT COUNT(id_projeto) FROM igsis.sis_formacao_projeto),
+    (SELECT COUNT(idProjeto) FROM projetos),
+	'Projetos');            
+    
+INSERT INTO logCopia(old_igsis, new_igsis, nomeTabela)
+  VALUES( 
+    (SELECT COUNT(id_subPrefeitura) FROM igsis.sis_formacao_subPrefeitura),
+    (SELECT COUNT(idsubPrefeitura) FROM subPrefeituras),
+	'SubPrefeituras');                
 
 SELECT * FROM logCopia;
 

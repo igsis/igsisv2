@@ -413,6 +413,40 @@ CREATE PROCEDURE pr_insert_linguagens()
   END //
 DELIMITER ; 
 
+DROP PROCEDURE IF EXISTS pr_insert_projetos;
+DELIMITER //
+CREATE PROCEDURE pr_insert_projetos()
+  BEGIN  
+   INSERT INTO 
+     igsisv2.projetos(
+       idProjeto,
+       descricao       
+   )    
+   SELECT 
+     id_projeto,
+     projeto     
+   FROM 
+     igsis.sis_formacao_projeto;    
+  END //
+DELIMITER ; 
+
+DROP PROCEDURE IF EXISTS pr_insert_subPrefeitura;
+DELIMITER //
+CREATE PROCEDURE pr_insert_subPrefeitura()
+  BEGIN  
+   INSERT INTO 
+     igsisv2.subPrefeituras(
+       idSubPrefeitura,
+       nome       
+   )    
+   SELECT 
+     id_subPrefeitura,
+     subPrefeitura     
+   FROM 
+     igsis.sis_formacao_subPrefeitura;    
+  END //
+DELIMITER ; 
+
 
 
 /*Modulo ADM*/
@@ -429,9 +463,12 @@ CALL pr_insert_usuarioLocais_complemento;
 CALL pr_delete_tmp_usuarios;
 
 /*Modulo Formacao*/
-CALL pr_insert_cargos();
-CALL pr_insert_coordenadorias();
-CALL pr_insert_linguagens();
+CALL pr_insert_cargos;
+CALL pr_insert_coordenadorias;
+CALL pr_insert_linguagens;
+CALL pr_insert_projetos;
+CALL pr_insert_subPrefeitura;
+
 
 
 
